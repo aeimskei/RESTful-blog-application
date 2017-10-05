@@ -57,3 +57,9 @@ DESTROY /destroyBlog/:id
 
 * Add DESTROY route
 * Add EDIT and DESTROY links
+
+----------------- Final Updates -----------------
+
+* Sanitize blog body with express-sanitizer npm (removes all scripts and gives pure HTML)
+* Style Index
+* Update REST Table
