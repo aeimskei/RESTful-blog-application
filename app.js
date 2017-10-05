@@ -1,7 +1,8 @@
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose");
+var express         = require("express"),
+    app             = express(),
+    bodyParser      = require("body-parser"),
+    mongoose        = require("mongoose"),
+    methodOverride  = require("method-override");
     
 // ============ APP CONFIG ======================
     
@@ -17,6 +18,9 @@ app.use(express.static("public"));
 
 // Tell express to use body-parser
 app.use(bodyParser.urlencoded({extended: true}));
+
+// Tell express to use method-override
+app.use(methodOverride("_method"));
 
 // ============ MONGOOSE/MODEL CONFIG ================
 
@@ -79,6 +83,30 @@ app.get("/blogs/:id", function(req, res){
            res.render("show", {blog: foundBlog});
        }
    });
+});
+
+// EDIT Route
+
+app.get("/blogs/:id/edit", function(req, res){
+    Blog.findById(req.params.id, function(err, foundBlog){
+        if (err){
+            res.redirect("/blogs");
+        } else {
+            res.render("edit", {blog: foundBlog});
+        }
+    });
+});
+
+// UPDATE Route
+
+app.put("/blogs/:id", function(req, res){
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+        if (err){
+            res.redirect("/blogs");
+        } else {
+            res.redirect("/blogs/" + req.params.id);
+        }
+    });
 });
 
 // Setup template
