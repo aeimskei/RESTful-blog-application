@@ -109,6 +109,19 @@ app.put("/blogs/:id", function(req, res){
     });
 });
 
+// DELETE Route
+
+app.delete("/blogs/:id", function(req, res){
+    // destroy blog
+    Blog.findByIdAndRemove(req.params.id, function(err){
+        if (err){
+            res.redirect("/blogs");
+        } else {
+            res.redirect("/blogs");
+        }
+    });
+});
+
 // Setup template
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("The RESTful Blog App Server Has Started!");

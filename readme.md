@@ -45,10 +45,15 @@ DESTROY /destroyBlog/:id
 * Add links to show page
 * Style the SHOW template
 
-------------------- Edit/Update -----------------
+---------------- Edit/Update  ------------------
 
 * Add EDIT route
 * Add EDIT form
 * Add UPDATE route
 * Add UPDATE form
 * Add Method-Override (an npm we tell express to use)
+
+------------------- DESTROYYYYY -----------------
+
+* Add DESTROY route
+* Add EDIT and DESTROY links
